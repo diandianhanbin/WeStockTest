@@ -16,7 +16,8 @@ COMMON = {
 	'native_hangqing': (By.NAME, u'行情'),
 	'native_faxian': (By.NAME, u'发现'),
 	'native_wo': (By.NAME, u'我'),
-	'data_url': '/Users/SvenWeng/PycharmProjects/WeStock/Data/data.json'
+	'data_url': '/Users/SvenWeng/PycharmProjects/WeStock/Data/data.json',
+	'view_title': (By.CLASS_NAME, 'android.widget.TextView')
 }
 
 CAIXUN = {
@@ -27,5 +28,14 @@ CAIXUN = {
 	'xinsanban': (By.NAME, u'新三板'),
 	'zixunneirong': (By.ID, 'com.weizq:id/new_title'),  # 财讯记录列表,用find_elements调用
 	'imgurl': '/Users/SvenWeng/PycharmProjects/WeStock/img/caixun/',
-	'back': (By.ID, 'com.weizq:id/back_iv')
+	'back': (By.ID, 'com.weizq:id/back_iv'),
+	'title': [
+		['tuijian', 'tuijianneirong'],
+		['gupiao', 'gupiaoneirong'],
+		['jijin', 'jijinneirong'],
+		['zhaiquan', 'zhaiquanneirong'],
+		['xinsanban', 'xinsanbanneirong']
+	],
+	'jiahao': (By.CLASS_NAME, 'android.widget.ImageView'),
+	'pindao': (By.ID, 'com.weizq:id/text_item'),
 }
