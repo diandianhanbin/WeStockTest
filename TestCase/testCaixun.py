@@ -1,4 +1,6 @@
 # ecoding=utf-8
+import sys
+sys.path.append("..")  # 保证上级config的引用
 import unittest
 import json
 import config
@@ -11,7 +13,7 @@ __author__ = "Sven_Weng"
 
 class CaixunTest(AppTestCase, Caixun):
 
-	def testClickTitle(self):
+	def test001_ClickTitle(self):
 		"""测试财讯的频道内容是否正确"""
 		self.clickCaixun()
 		self.assertEqual(self.get_title(), u'财讯')
@@ -40,7 +42,7 @@ class CaixunTest(AppTestCase, Caixun):
 		self.clickNeirong()
 		self.get_screen('xinsanbanneirong')
 
-	def testAddPindao(self):
+	def test002_AddPindao(self):
 		"""测试增加频道功能"""
 		self.clickCaixun()
 		self.clickPlus()
@@ -54,7 +56,7 @@ class CaixunTest(AppTestCase, Caixun):
 		self.assertEqual(text, self.getFifthItemText())
 		self.clickItem(5)
 
-	def testNewPindao(self):
+	def test003_NewPindao(self):
 		"""测试新增频道内容显示"""
 		self.clickCaixun()
 		self.clickPlus()
@@ -69,4 +71,6 @@ class CaixunTest(AppTestCase, Caixun):
 
 
 if __name__ == '__main__':
-	unittest.main(verbosity=2)
+	# suite = unittest.TestSuite()
+	suite = unittest.TestLoader().loadTestsFromTestCase(CaixunTest)
+	unittest.TextTestRunner(verbosity=2).run(suite)

@@ -32,6 +32,6 @@ class AppTestCase(unittest.TestCase):
 	def tearDown(self):
 		self.driver.quit()
 
-	def get_driver(self):
-		return self.driver
+	# def get_driver(self):
+	# 	return self.driver
 

@@ -28,7 +28,6 @@ CAIXUN = {
 	'xinsanban': (By.NAME, u'新三板'),
 	'zixunneirong': (By.ID, 'com.weizq:id/new_title'),  # 财讯记录列表,用find_elements调用
 	'imgurl': '/Users/SvenWeng/PycharmProjects/WeStock/img/caixun/',
-	'back': (By.ID, 'com.weizq:id/back_iv'),
 	'title': [
 		['tuijian', 'tuijianneirong'],
 		['gupiao', 'gupiaoneirong'],
@@ -38,4 +37,32 @@ CAIXUN = {
 	],
 	'jiahao': (By.CLASS_NAME, 'android.widget.ImageView'),
 	'pindao': (By.ID, 'com.weizq:id/text_item'),
+}
+
+HANGQING = {
+	# ----------行情页面-------------
+	'edit_select': (By.CLASS_NAME, 'android.widget.ImageView'),  # index[0]
+	'find_stock': (By.CLASS_NAME, 'android.widget.ImageView'),  # index[1]
+	'zixuan': (By.NAME, u'自选'),
+	'hushen': (By.NAME, u'沪深'),
+	'ganggu': (By.NAME, u'港股'),
+	'gengduo': (By.NAME, u'更多'),
+	'mingchendaima': (By.ID, 'com.weizq:id/tztStockCodeName_title'),  # 名称代码
+	'zuixinjia': (By.ID, 'com.weizq:id/tztCodePrice_title'),  # 最新价
+	'zhangdiefu': (By.ID, 'com.weizq:id/tztTextWillchange_title'),  # 涨跌幅
+	'stock': {
+		'info': (By.ID, 'com.weizq:id/tztStockCodeNameLayout'),  # 股票
+		'name': (By.ID, 'com.weizq:id/tztStockCodeName'),  # 股票名称
+		'num': (By.ID, 'com.weizq:id/tztSotckCode'),  # 股票代码
+	},
+	'price': (By.ID, 'com.weizq:id/tztCodePrice'),  # 股票价格
+	'newprice': (By.ID, 'com.weizq:id/tztCodePrice_title'),  # 最新价
+	'newzhangdiefu': (By.ID, 'com.weizq:id/tztTextWillchange'),  # 涨跌幅下面的指标
+	# ----------编辑自选页面-------
+	'delete': (By.ID, 'com.weizq:id/tzt_del_userstock_icon'),  # 删除自选
+	'settop': (By.ID, 'com.weizq:id/tzt_zhiding_userstock_icon'),  # 置顶
+	'move': (By.ID, 'com.weizq:id/tzt_move_userstock_icon'),  # 拖动
+	'stock_name': (By.ID, 'com.weizq:id/tzt_userstock_text'),  # 股票名称
+	'stock_num': (By.ID, 'com.weizq:id/tzt_userstock_text2'),  # 股票代码
+	'move_title': (By.NAME, u'拖动'),  # 拖动 标题
 }
