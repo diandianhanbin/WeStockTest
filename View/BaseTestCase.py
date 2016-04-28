@@ -1,10 +1,11 @@
 # ecoding=utf-8
+# Author: Sven_Weng | 翁彦彬
+# Email: diandianhanbin@gmail.com
 import unittest
 from appium import webdriver
 # from selenium import webdriver
 import config
 
-__author__ = "Sven_Weng"
 
 #
 # class BaseTestCase(unittest.TestCase):

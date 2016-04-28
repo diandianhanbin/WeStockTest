@@ -1,6 +1,7 @@
 # ecoding=utf-8
+# Author: Sven_Weng | 翁彦彬
+# Email: diandianhanbin@gmail.com
 from selenium.webdriver.common.by import By
-__author__ = "Sven_Weng"
 
 CONNECT = {
 	'platformName': 'Android',
@@ -17,7 +18,9 @@ COMMON = {
 	'native_faxian': (By.NAME, u'发现'),
 	'native_wo': (By.NAME, u'我'),
 	'data_url': '/Users/SvenWeng/PycharmProjects/WeStock/Data/data.json',
-	'view_title': (By.CLASS_NAME, 'android.widget.TextView')
+	'view_title': (By.CLASS_NAME, 'android.widget.TextView'),
+	'ensure': (By.NAME, u'确定'),
+	'cancle': (By.NAME, u'取消'),
 }
 
 CAIXUN = {
@@ -58,6 +61,7 @@ HANGQING = {
 	'price': (By.ID, 'com.weizq:id/tztCodePrice'),  # 股票价格
 	'newprice': (By.ID, 'com.weizq:id/tztCodePrice_title'),  # 最新价
 	'newzhangdiefu': (By.ID, 'com.weizq:id/tztTextWillchange'),  # 涨跌幅下面的指标
+
 	# ----------编辑自选页面-------
 	'delete': (By.ID, 'com.weizq:id/tzt_del_userstock_icon'),  # 删除自选
 	'settop': (By.ID, 'com.weizq:id/tzt_zhiding_userstock_icon'),  # 置顶
@@ -65,4 +69,11 @@ HANGQING = {
 	'stock_name': (By.ID, 'com.weizq:id/tzt_userstock_text'),  # 股票名称
 	'stock_num': (By.ID, 'com.weizq:id/tzt_userstock_text2'),  # 股票代码
 	'move_title': (By.NAME, u'拖动'),  # 拖动 标题
+
+	# ----------查找自选页面-------
+	'input': (By.ID, 'com.weizq:id/tz_searchstock_edit'),  # 搜索框
+	'stock_name_search': (By.ID, 'com.weizq:id/tzt_querystock_list_col1'),  # 搜索结果的股票名称
+	'stock_num_search': (By.ID, 'com.weizq:id/tzt_querystock_list_col4'),  # 搜索结果的股票代码
+	'addordel_stock': (By.ID, 'com.weizq:id/tzt_querystock_list_col3'),  # 添加或删除自选
+	'clean_history': (By.ID, 'com.weizq:id/tzt_querystock_list_col5'),  # 清除搜索记录&股票代码不存在
 }

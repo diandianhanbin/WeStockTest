@@ -1,10 +1,10 @@
 # ecoding=utf-8
+# Author: Sven_Weng | 翁彦彬
+# Email: diandianhanbin@gmail.com
 from selenium.webdriver.support.expected_conditions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 import time as t
 import config
-
-__author__ = "Sven_Weng"
 
 
 # class Factory(object):
@@ -140,6 +140,14 @@ class WebDdriver(object):
 		locaY = self.find_element(*loc).location.get('y')
 		rst = [locaX, locaY]
 		return rst
+
+	def reLoadApp(self):
+		"""
+		重启app
+		:return:None
+		"""
+		self.driver.close_app()
+		self.driver.launch_app()
 
 
 class WebUI(WebDdriver):

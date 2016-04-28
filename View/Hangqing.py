@@ -1,5 +1,5 @@
 # ecoding=utf-8
-# Author: Sven_Weng翁彦彬
+# Author: Sven_Weng | 翁彦彬
 # Email: diandianhanbin@gmail.com
 from django.forms.widgets import Input
 
@@ -11,9 +11,11 @@ from View.BaseView import AppUI
 
 class HangQing(AppUI):
 
-	# ----------------------行情所有数据--------------------------
+	# ----------------------行情所有数据------------------------------------
 	native_hangqing = config.COMMON['native_hangqing']
+	ensure = config.COMMON['ensure']
 
+	# ----------------------自选页面---------------------------
 	edit_select = config.HANGQING['edit_select']
 	find_stock = config.HANGQING['find_stock']
 	stock_info = config.HANGQING['stock']['info']
@@ -25,9 +27,22 @@ class HangQing(AppUI):
 	zhangdiefuchange = config.HANGQING['newzhangdiefu']
 	zhangdiefu = config.HANGQING['zhangdiefu']
 
-	# ----------------------------------------------------------
+	# ----------------------编辑自选页面----------------------
+	delete = config.HANGQING['delete']
+	settop = config.HANGQING['settop']
+	drag = config.HANGQING['move']
+	drag_title = config.HANGQING['move_title']
+	stock_num_bjzx = config.HANGQING['stock_num']
 
-	# ----------------------执行方法-----------------------------
+	# ----------------------查找股票页面----------------------
+	input_area = config.HANGQING['input']
+	stock_name_search = config.HANGQING['stock_name_search']
+	stock_num_search = config.HANGQING['stock_num_search']
+	addordel = config.HANGQING['addordel_stock']
+	clean_history = config.HANGQING['clean_history']
+
+	# ----------------------执行方法---------------------------------------
+	# ----------------------自选页面-----------------------------
 
 	def clickHangQing(self):
 		"""
@@ -124,4 +139,128 @@ class HangQing(AppUI):
 		:return: str, 涨跌幅变动的文本
 		"""
 		rst = self.find_element(*self.zhangdiefu).text
+		return rst
+
+# ---------------编辑自选页面-------------------------------
+
+	def clickDelete(self, index):
+		"""
+		根据序号点击删除按钮
+		:param index:序号
+		:return: None
+		"""
+		if isinstance(index, int):
+			self.find_elements(*self.delete)[index].click()
+		else:
+			print "输入类型有误"
+
+	def clickSetTop(self, index):
+		"""
+		根据序号点击置顶按钮
+		:param index: 序号
+		:return: None
+		"""
+		if isinstance(index, int):
+			self.find_elements(*self.settop)[index].click()
+		else:
+			print "输入类型有误"
+
+	def dragToMove(self, index):
+		"""
+		根据序号拖动相关个股到'拖动'位置(置顶)
+		:param index: 序号
+		:return: None
+		"""
+		if isinstance(index, int):
+			start = self.find_elements(*self.drag)[index]
+			end = self.find_element(*self.drag_title)
+			self.driver.drag_and_drop(start, end)
+		else:
+			print "输入类型有误"
+
+	def getStockNum_Bjzx(self, index):
+		if isinstance(index, int):
+			rst = self.find_elements(*self.stock_num_bjzx)[index].text
+			return rst
+		else:
+			print "输入类型有误"
+
+# ------------查找股票页面-----------
+
+	def inputStock(self, val):
+		"""
+		在查找股票页面输入内容
+		:param val: str, 输入的内容
+		:return: None
+		"""
+		self.find_element(*self.input_area).send_keys(val)
+
+	def inputClear(self):
+		"""
+		在查找股票页面清除输入框的内容
+		:return: None
+		"""
+		self.find_element(*self.input_area).clear()
+
+	def getStockNameSearch(self, index):
+		"""
+		根据传入的序号获取搜索结果的股票名称
+		:param index: 序号
+		:return:str, 股票名称
+		"""
+		rst = self.find_elements(*self.stock_name_search)[index].text
+		return rst
+
+	def getStockNumSearch(self, index):
+		"""
+		根据传入的序号获取搜索结果的股票代码
+		:param index:序号
+		:return:str, 股票代码
+		"""
+		rst = self.find_elements(*self.stock_num_search)[index].text
+		return rst
+
+	def clickStockNumSearch(self, index):
+		"""
+		根据传入的序号点击相应的搜索结果
+		:param index: 序号
+		:return:None
+		"""
+		self.find_elements(*self.stock_num_search)[index].click()
+
+	def clickAddOrDel(self, index):
+		"""
+		根据传入的序号点击添加删除按钮
+		:param index:序号
+		:return:None
+		"""
+		self.find_elements(*self.addordel)[index].click()
+
+	def clickClean(self, val):
+		"""
+		根据传入的val判定点击或者获取文本
+		:param val: str, [click,点击] [text,获取文本]
+		:return:str, 获取的文本
+		"""
+		if val == 'click':
+			self.find_element(*self.clean_history).click()
+		elif val == 'text':
+			rst = self.find_element(*self.clean_history).text
+			return rst
+		else:
+			print 'clickClean函数的入参有误'
+
+	def clickEnsure(self):
+		"""
+		点击确定按钮
+		:return:None
+		"""
+		self.find_element(*self.ensure).click()
+
+	def getLengthSearch(self):
+		"""
+		获取个股搜索页面的长度
+		:return: int, 搜索页面的长度
+		"""
+		rst = len(self.find_elements(*self.stock_num_search))
 		return rst
