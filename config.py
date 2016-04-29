@@ -76,4 +76,15 @@ HANGQING = {
 	'stock_num_search': (By.ID, 'com.weizq:id/tzt_querystock_list_col4'),  # 搜索结果的股票代码
 	'addordel_stock': (By.ID, 'com.weizq:id/tzt_querystock_list_col3'),  # 添加或删除自选
 	'clean_history': (By.ID, 'com.weizq:id/tzt_querystock_list_col5'),  # 清除搜索记录&股票代码不存在
+
+	# ----------自选详情页面-------
+	'zixuan_stock_detail': (By.ID, 'com.weizq:id/zixuan_btn'),  # 添加删除自选
+	'buy_detail': (By.ID, 'com.weizq:id/mairu_btn'),  # 买入
+	'sale_detail': (By.ID, 'com.weizq:id/maichu_btn'),  # 卖出
+	'share_detail': (By.ID, 'com.weizq:id/share_btn'),  # 分享
+	'fenshi': (By.NAME, u'分时'),
+	'rik': (By.NAME, u'日K'),
+	'zhouk': (By.NAME, u'周K'),
+	'yuek': (By.NAME, u'月K'),
+
 }

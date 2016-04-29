@@ -2,19 +2,14 @@
 # Author: Sven_Weng | 翁彦彬
 # Email: diandianhanbin@gmail.com
 import sys
-sys.path.append("..")  # 保证上级config的引用
 import unittest
-import json
-import config
-import time
 import random
 from View.Hangqing import HangQing
 from View.BaseTestCase import AppTestCase
-from selenium.webdriver.common.by import By
+sys.path.append("..")  # 保证上级config的引用
 
 
 class HangQingTest(AppTestCase, HangQing):
-
 	# ---------------测试自选页面--------------------
 
 	def test001_JiangXu(self):
@@ -94,6 +89,10 @@ class HangQingTest(AppTestCase, HangQing):
 		self.sysback()
 		for x in range(self.getLength()):
 			self.assertNotEqual(self.getStockNum(x), stock_num)
+		# 重启app校验是否生效
+		self.reLoadApp()
+		for x in range(self.getLength()):
+			self.assertNotEqual(self.getStockNum(x), stock_num)
 
 	def test007_SetTop(self):
 		"""测试置顶自选"""
@@ -107,7 +106,7 @@ class HangQingTest(AppTestCase, HangQing):
 		self.assertEqual(self.getStockNum(0), stock_num)
 		# 重启app校验是否生效
 		self.reLoadApp()
-		self.assertEqual(self.getStockNum(0), stock_num, u'重启APP后置顶并未生效')
+		self.assertEqual(self.getStockNum(0), stock_num, '重启APP后置顶并未生效')
 
 	def test008_DragToTop(self):
 		"""测试拖动功能"""
@@ -118,10 +117,10 @@ class HangQingTest(AppTestCase, HangQing):
 		stock_num = self.getStockNum_Bjzx(ran)
 		self.dragToMove(ran)
 		self.sysback()
-		self.assertEqual(self.getStockNum(0), stock_num, u'拖动功能不正确')
+		self.assertEqual(self.getStockNum(0), stock_num, '拖动功能不正确')
 		# 重启app校验是否生效
 		self.reLoadApp()
-		self.assertEqual(self.getStockNum(0), stock_num, u'重启APP后拖动并未生效')
+		self.assertEqual(self.getStockNum(0), stock_num, '重启APP后拖动并未生效')
 
 	def test009_AddAndDelStock(self):
 		"""测试删除自选和添加自选"""
@@ -134,7 +133,6 @@ class HangQingTest(AppTestCase, HangQing):
 				break
 			except ValueError:
 				pass
-		print stock_num
 		self.clickFindStock()  # 切换到查找页面
 		self.inputStock(stock_num)
 		self.clickAddOrDel(0)
@@ -194,9 +192,45 @@ class HangQingTest(AppTestCase, HangQing):
 			self.inputStock(x)
 			self.sysback()
 			for y in range(self.getLengthSearch()):
-				print x, ' | ', self.getStockNumSearch(y)
 				self.assertIn(x, self.getStockNumSearch(y))
 			self.inputClear()
+
+	def test012_GuPiaoDetailAddAndDel(self):
+		"""测试个股详情页面增加和删除自选"""
+		ran = random.randint(0, self.getLength())
+		stock_name = self.getStockName(ran)
+		stock_num = self.getStockNum(ran)
+		self.clickStock(ran)
+		self.assertIn(stock_name, self.get_title(), '个股标题显示不正确(股票名称)')
+		self.assertIn(stock_num, self.get_title(), '个股标题显示不正确(股票代码)')
+		self.clickZiXuanDetail()
+		self.sysback()
+		self.assertEqual(self.get_title(), u'行情')
+		for x in range(self.getLength()):
+			self.assertNotEqual(self.getStockNum(x), stock_num)
+		self.reLoadApp()  # 重启APP
+		for x in range(self.getLength()):
+			self.assertNotEqual(self.getStockNum(x), stock_num)
+
+		# 添加自选
+		self.clickFindStock()
+		self.inputStock(stock_num)
+		self.clickStockNumSearch(0)
+		self.clickZiXuanDetail()
+		self.sysback()
+		if self.get_title() != u'行情':
+			self.sysback()
+		stock_list = []
+		for x in range(self.getLength()):
+			stock_list.append(self.getStockNum(x))
+		self.assertIn(stock_num, stock_list)
+
+		# 校验重启后是否生效
+		self.reLoadApp()
+		stock_list = []
+		for x in range(self.getLength()):
+			stock_list.append(self.getStockNum(x))
+		self.assertIn(stock_num, stock_list)
 
 
 if __name__ == '__main__':

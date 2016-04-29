@@ -21,6 +21,7 @@ class HangQing(AppUI):
 	stock_info = config.HANGQING['stock']['info']
 	zixuan = config.HANGQING['zixuan']
 	stock_num = config.HANGQING['stock']['num']
+	stock_name = config.HANGQING['stock']['name']
 	mingchengdaima = config.HANGQING['mingchendaima']
 	newprice = config.HANGQING['newprice']
 	stock_price = config.HANGQING['price']
@@ -40,6 +41,9 @@ class HangQing(AppUI):
 	stock_num_search = config.HANGQING['stock_num_search']
 	addordel = config.HANGQING['addordel_stock']
 	clean_history = config.HANGQING['clean_history']
+
+	# ----------------------个股详情页面----------------------
+	zixuan_detail = config.HANGQING['zixuan_stock_detail']
 
 	# ----------------------执行方法---------------------------------------
 	# ----------------------自选页面-----------------------------
@@ -95,15 +99,38 @@ class HangQing(AppUI):
 		self.clickZiXuan()
 		self.find_element(*self.mingchengdaima).click()
 
+	def getStockName(self, index):
+		"""
+		根据序号获取自选页面股票名称
+		:param index: int, 序号
+		:return: str, 股票代码
+		"""
+		if isinstance(index, int):
+			stock_name = self.find_elements(*self.stock_name)[index].text
+			return stock_name
+		else:
+			print '输入类型有误'
+
 	def getStockNum(self, index):
 		"""
-		根据序号获取股票代码
+		根据序号获取自选页面股票代码
 		:param index: int, 序号
 		:return: str,股票代码
 		"""
 		if isinstance(index, int):
 			stock_num = self.find_elements(*self.stock_num)[index].text
 			return stock_num
+		else:
+			print '输入类型有误'
+
+	def clickStock(self, index):
+		"""
+		根据序号点击自选页面个股进入个股详情
+		:param index: int, 序号
+		:return: None
+		"""
+		if isinstance(index, int):
+			self.find_elements(*self.stock_name)[index].click()
 		else:
 			print '输入类型有误'
 
@@ -264,3 +291,12 @@ class HangQing(AppUI):
 		"""
 		rst = len(self.find_elements(*self.stock_num_search))
 		return rst
+
+	# --------------个股详情页面------------------
+
+	def clickZiXuanDetail(self):
+		"""
+		点击个股详情页面的自选按钮
+		:return: None
+		"""
+		self.find_element(*self.zixuan_detail).click()
