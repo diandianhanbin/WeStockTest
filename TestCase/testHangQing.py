@@ -2,11 +2,12 @@
 # Author: Sven_Weng | 翁彦彬
 # Email: diandianhanbin@gmail.com
 import sys
+sys.path.append("..")
+import config
 import unittest
 import random
 from View.Hangqing import HangQing
 from View.BaseTestCase import AppTestCase
-sys.path.append("..")  # 保证上级config的引用
 
 
 class HangQingTest(AppTestCase, HangQing):
@@ -68,6 +69,8 @@ class HangQingTest(AppTestCase, HangQing):
 
 	def test005_ZhangDieFuChange(self):
 		"""测试涨跌幅的点击变动"""
+		self.clickHangQing()
+		self.clickZiXuan()
 		self.assertEqual(self.getZhangDieChange(), u'涨跌幅')
 		self.clickZhangDieFuChange()
 		self.assertEqual(self.getZhangDieChange(), u'涨跌值')
@@ -154,16 +157,16 @@ class HangQingTest(AppTestCase, HangQing):
 		self.sysback()
 		if self.get_title() != u'行情':
 			self.sysback()
-		stock_list = []
-		for x in range(self.getLength()):
-			stock_list.append(self.getStockNum(x))
+		stock_list = [self.getStockNum(x) for x in range(self.getLength())]
+		# for x in range(self.getLength()):
+		# 	stock_list.append(self.getStockNum(x))
 		self.assertIn(stock_num, stock_list)
 
 		# 校验重启后是否生效
 		self.reLoadApp()
-		stock_list = []
-		for x in range(self.getLength()):
-			stock_list.append(self.getStockNum(x))
+		stock_list = [self.getStockNum(x) for x in range(self.getLength())]
+		# for x in range(self.getLength()):
+		# 	stock_list.append(self.getStockNum(x))
 		self.assertIn(stock_num, stock_list)
 
 	def test010_CleanHistory(self):
@@ -220,17 +223,72 @@ class HangQingTest(AppTestCase, HangQing):
 		self.sysback()
 		if self.get_title() != u'行情':
 			self.sysback()
-		stock_list = []
-		for x in range(self.getLength()):
-			stock_list.append(self.getStockNum(x))
+		stock_list = [self.getStockNum(x) for x in range(self.getLength())]
+		# for x in range(self.getLength()):
+		# 	stock_list.append(self.getStockNum(x))
 		self.assertIn(stock_num, stock_list)
 
 		# 校验重启后是否生效
 		self.reLoadApp()
-		stock_list = []
-		for x in range(self.getLength()):
-			stock_list.append(self.getStockNum(x))
+		stock_list = [self.getStockNum(x) for x in range(self.getLength())]
+		# for x in range(self.getLength()):
+		# 	stock_list.append(self.getStockNum(x))
 		self.assertIn(stock_num, stock_list)
+
+	def test013_GetKXianTu(self):
+		"""测试获取个股详情的K线图"""
+		self.clickHangQing()
+		self.assertEqual(self.get_title(), u'行情')
+		ran = random.randint(0, self.getLength())
+		self.clickStock(ran)
+		self.clickFenShi()
+		self.getScreenshot('分时', self.img_url_zixuan)
+		self.clickRiK()
+		self.getScreenshot('日K', self.img_url_zixuan)
+		self.clickZhouK()
+		self.getScreenshot('周K', self.img_url_zixuan)
+		self.clickYueK()
+		self.getScreenshot('月K', self.img_url_zixuan)
+
+	def test014_CheckXinGuRiLi(self):
+		"""测试获取新股日历"""
+		self.clickHangQing()
+		self.clickHuShen()
+		self.clickXinGuRiLi()
+		self.assertEqual(self.get_title(), u'新股日历')
+		self.getScreenshot('新股日历', self.img_url_hushen)
+
+	def test015_GetHuShenScreen(self):
+		"""测试获取指数图片"""
+		self.clickHangQing()
+		self.clickHuShen()
+		self.clickShangZhengZhiShu()
+		self.assertIn(u'上证指数', self.get_title())
+		self.getScreenshot('上证指数', self.img_url_hushen)
+		self.sysback()
+		self.clickShenZhengChengZhi()
+		self.assertIn(u'深圳成指', self.get_title())
+		self.getScreenshot('深圳成指', self.img_url_hushen)
+		self.sysback()
+		self.clickChuangYeBanZhi()
+		self.assertIn(u'创业板指', self.get_title())
+		self.getScreenshot('创业板指', self.img_url_hushen)
+
+	def test016_GetBangKuaiInfo(self):
+		"""测试获取热门行业等板块的图片"""
+		self.clickHangQing()
+		self.clickHuShen()
+		self.clickReMenHangYe()
+		self.clickZhangFuBang()
+		self.clickDieFuBang()
+		self.clickHuanShouBang()
+		self.clickZhenFuBang()
+		ranks = ['热门行业', '涨幅榜', '跌幅榜', '换手榜', '振幅榜']
+		for x, rank in enumerate(ranks):
+			self.clickGetMore(x)
+			self.getScreenshot(rank, self.img_url_hushen)
+			self.sysback()
+
 
 
 if __name__ == '__main__':

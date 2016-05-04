@@ -1,1 +1,9 @@
-{}
+{
+  "testHangQing.py::HangQingTest::test001_JiangXu": true, 
+  "testHangQing.py::HangQingTest::test002_ShengXu": true, 
+  "testHangQing.py::HangQingTest::test006_DeleteZiXuan": true, 
+  "testHangQing.py::HangQingTest::test007_SetTop": true, 
+  "testHangQing.py::HangQingTest::test008_DragToTop": true, 
+  "testHangQing.py::HangQingTest::test011_NumSearch": true, 
+  "testHangQing.py::HangQingTest::test015_GetHuShenScreen": true
+}

@@ -44,6 +44,13 @@ CAIXUN = {
 
 HANGQING = {
 	# ----------行情页面-------------
+
+	'imgurl': '/Users/SvenWeng/PycharmProjects/WeStock/img/hangqing/',
+	'imgurl_zixuan': '/Users/SvenWeng/PycharmProjects/WeStock/img/hangqing/zixuan/',
+	'imgurl_hushen': '/Users/SvenWeng/PycharmProjects/WeStock/img/hangqing/hushen/',
+	'imgurl_ganggu': '/Users/SvenWeng/PycharmProjects/WeStock/img/hangqing/ganggu/',
+	'imgurl_more': '/Users/SvenWeng/PycharmProjects/WeStock/img/hangqing/more/',
+
 	'edit_select': (By.CLASS_NAME, 'android.widget.ImageView'),  # index[0]
 	'find_stock': (By.CLASS_NAME, 'android.widget.ImageView'),  # index[1]
 	'zixuan': (By.NAME, u'自选'),
@@ -86,5 +93,28 @@ HANGQING = {
 	'rik': (By.NAME, u'日K'),
 	'zhouk': (By.NAME, u'周K'),
 	'yuek': (By.NAME, u'月K'),
+
+	# ---------沪深页面-----------------
+	'xingurili': (By.NAME, u'新股日历'),
+	'shangzhengzhishu': (By.NAME, u'上证指数'),
+	'shengzhengchengzhi': (By.NAME, u'深圳成指'),
+	'chuangyebanzhi': (By.NAME, u'创业板指'),
+	'getmore': (By.ID, 'com.weizq:id/tztMoreImage'),
+	'remenhangye': (By.NAME, u'热门行业'),
+	'zhangfubang': (By.NAME, u'涨幅榜'),
+	'diefubang': (By.NAME, u'跌幅榜'),
+	'huanshoubang': (By.NAME, u'换手榜'),
+	'zhenfubang': (By.NAME, u'振幅榜'),
+
+	# ---------港股页面-----------------
+	'ganggutongzhangfubang': (By.NAME, u'港股通涨幅榜'),
+	'ganggutongdiefubang': (By.NAME, u'港股通跌幅榜'),
+	'zhubangzhangfubang': (By.NAME, u'主板涨幅榜'),
+	'zhubangdiefubang': (By.NAME, u'主板跌幅榜'),
+	'remenahgu': (By.NAME, u'热门AH股'),
+	'hongchougu': (By.NAME, u'红筹股'),
+	'lanchougu': (By.NAME, u'蓝筹股'),
+
+	# ---------更多页面-----------------
 
 }

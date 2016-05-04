@@ -36,7 +36,7 @@ class WebDdriver(object):
 		:return: element
 		"""
 		try:
-			element = WebDriverWait(self.driver, 10).until(lambda x: x.find_element(*loc))
+			element = WebDriverWait(self.driver, 30).until(lambda x: x.find_element(*loc))
 			return element
 		except NoSuchElementException, e:
 			print 'Error details :%s' % (e.args[0])

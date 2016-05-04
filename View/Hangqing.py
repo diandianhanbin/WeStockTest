@@ -14,6 +14,11 @@ class HangQing(AppUI):
 	# ----------------------行情所有数据------------------------------------
 	native_hangqing = config.COMMON['native_hangqing']
 	ensure = config.COMMON['ensure']
+	img_url = config.HANGQING['imgurl']
+	img_url_zixuan = config.HANGQING['imgurl_zixuan']
+	img_url_hushen = config.HANGQING['imgurl_hushen']
+	img_url_ganggu = config.HANGQING['imgurl_ganggu']
+	img_url_more = config.HANGQING['imgurl_more']
 
 	# ----------------------自选页面---------------------------
 	edit_select = config.HANGQING['edit_select']
@@ -44,8 +49,35 @@ class HangQing(AppUI):
 
 	# ----------------------个股详情页面----------------------
 	zixuan_detail = config.HANGQING['zixuan_stock_detail']
+	fenshi = config.HANGQING['fenshi']
+	rik = config.HANGQING['rik']
+	zhouk = config.HANGQING['zhouk']
+	yuek = config.HANGQING['yuek']
+
+	# ----------------------沪深页面-------------------------
+	hushen = config.HANGQING['hushen']
+	xingurili = config.HANGQING['xingurili']
+	shangzhengzhishu = config.HANGQING['shangzhengzhishu']
+	shenzhengchengzhi = config.HANGQING['shengzhengchengzhi']
+	chuangyebanzhi = config.HANGQING['chuangyebanzhi']
+	getmore = config.HANGQING['getmore']
+	remenhangye = config.HANGQING['remenhangye']
+	zhangfubang = config.HANGQING['zhangfubang']
+	diefubang = config.HANGQING['diefubang']
+	huanshoubang = config.HANGQING['huanshoubang']
+	zhenfubang = config.HANGQING['zhenfubang']
+
+	# ----------------------港股页面-------------------------
+	ganggutongzhangfubang = config.HANGQING['ganggutongzhangfubang']
+	ganggutongdiefubang = config.HANGQING['ganggutongdiefubang']
+	zhubanzhangfubang = config.HANGQING['zhubangzhangfubang']
+	zhubandiefubang = config.HANGQING['zhubangdiefubang']
+	remenahgu = config.HANGQING['remenahgu']
+	hongchougu = config.HANGQING['hongchougu']
+	lanchougu = config.HANGQING['lanchougu']
 
 	# ----------------------执行方法---------------------------------------
+
 	# ----------------------自选页面-----------------------------
 
 	def clickHangQing(self):
@@ -300,3 +332,163 @@ class HangQing(AppUI):
 		:return: None
 		"""
 		self.find_element(*self.zixuan_detail).click()
+
+	def clickFenShi(self):
+		"""
+		点击个股详情的分时
+		:return:None
+		"""
+		self.find_element(*self.fenshi).click()
+
+	def clickRiK(self):
+		"""
+		点击个股详情的日K
+		:return: None
+		"""
+		self.find_element(*self.rik).click()
+
+	def clickZhouK(self):
+		"""
+		点个股详情的击周K
+		:return: None
+		"""
+		self.find_element(*self.zhouk).click()
+
+	def clickYueK(self):
+		"""
+		点击个股详情的月K
+		:return: None
+		"""
+		self.find_element(*self.yuek).click()
+
+	# ---------------沪深页面-------------------
+
+	def clickHuShen(self):
+		"""
+		点击沪深
+		:return:None
+		"""
+		self.find_element(*self.hushen).click()
+
+	def clickXinGuRiLi(self):
+		"""
+		点击新股日历
+		:return: None
+		"""
+		self.find_element(*self.xingurili).click()
+
+	def clickShangZhengZhiShu(self):
+		"""
+		点击上证指数
+		:return: None
+		"""
+		self.find_element(*self.shangzhengzhishu).click()
+
+	def clickShenZhengChengZhi(self):
+		"""
+		点击深圳成指
+		:return: None
+		"""
+		self.find_element(*self.shenzhengchengzhi).click()
+
+	def clickChuangYeBanZhi(self):
+		"""
+		点击创业板指
+		:return: None
+		"""
+		self.find_element(*self.chuangyebanzhi).click()
+
+	def clickGetMore(self, index):
+		"""
+		根据传入的序号点击查看全部按钮(查看沪深板块的全部信息,热门板块,涨幅榜等)
+		:param index: 序号
+		:return: None
+		"""
+		self.find_elements(*self.getmore)[index].click()
+
+	def clickReMenHangYe(self):
+		"""
+		点击热门行业
+		:return:None
+		"""
+		self.find_element(*self.remenhangye).click()
+
+	def clickZhangFuBang(self):
+		"""
+		点击涨幅榜
+		:return: None
+		"""
+		self.find_element(*self.zhangfubang).click()
+
+	def clickDieFuBang(self):
+		"""
+		点击跌幅榜
+		:return: None
+		"""
+		self.find_element(*self.diefubang).click()
+
+	def clickHuanShouBang(self):
+		"""
+		点击换手榜
+		:return: None
+		"""
+		self.find_element(*self.huanshoubang).click()
+
+	def clickZhenFuBang(self):
+		"""
+		点击振幅榜
+		:return: None
+		"""
+		self.find_element(*self.zhenfubang).click()
+
+	# ---------------港股页面-------------------
+
+	def clickGangGuTongZhangFuBang(self):
+		"""
+		点击港股通涨幅榜
+		:return: None
+		"""
+		self.find_element(*self.ganggutongzhangfubang).click()
+
+	def clickGangGuTongDieFuBang(self):
+		"""
+		点击港股通跌幅榜
+		:return: None
+		"""
+		self.find_element(*self.ganggutongdiefubang).click()
+
+	def clickZhuBangZhangFuBang(self):
+		"""
+		点击主板涨幅榜
+		:return:None
+		"""
+		self.find_element(*self.zhubanzhangfubang).click()
+
+	def clickZhuBangDieFuBang(self):
+		"""
+		点击主板跌幅榜
+		:return: None
+		"""
+		self.find_element(*self.zhubandiefubang).click()
+
+	def clickReMenAHGu(self):
+		"""
+		点击热门AH股
+		:return: None
+		"""
+		self.find_element(*self.remenahgu).click()
+
+	def clickHongChouGu(self):
+		"""
+		点击红筹股
+		:return: None
+		"""
+		self.find_element(*self.hongchougu).click()
+
+	def clickLanChouGu(self):
+		"""
+		点击蓝筹股
+		:return: None
+		"""
+		self.find_element(*self.lanchougu).click()
+
