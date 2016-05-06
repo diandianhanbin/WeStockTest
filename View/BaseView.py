@@ -149,6 +149,20 @@ class WebDdriver(object):
 		self.driver.close_app()
 		self.driver.launch_app()
 
+	def ZiJinZhangHaoLogin(self):
+		"""
+		资金账号登录
+		:return: None
+		"""
+		self.find_element(*config.COMMON['zjzhloginaccountedit']).clear()
+		self.find_element(*config.COMMON['zjzhloginaccountedit']).send_keys(config.COMMON['zjzhusername'])
+		self.find_element(*config.COMMON['zjzhloginpasswordedit']).clear()
+		self.find_element(*config.COMMON['zjzhloginpasswordedit']).send_keys(config.COMMON['zjzhpassword'])
+		yanzhengma = self.find_element(*config.COMMON['yanzhengma']).text
+		self.find_element(*config.COMMON['yanzhengmaedit']).clear()
+		self.find_element(*config.COMMON['yanzhengmaedit']).send_keys(yanzhengma)
+		self.find_element(*config.COMMON['loginbtn']).click()
+
 
 class WebUI(WebDdriver):
 	def __str__(self):

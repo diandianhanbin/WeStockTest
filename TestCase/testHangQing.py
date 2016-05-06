@@ -2,10 +2,12 @@
 # Author: Sven_Weng | 翁彦彬
 # Email: diandianhanbin@gmail.com
 import sys
+
 sys.path.append("..")
 import config
 import unittest
 import random
+import time
 from View.Hangqing import HangQing
 from View.BaseTestCase import AppTestCase
 
@@ -289,6 +291,48 @@ class HangQingTest(AppTestCase, HangQing):
 			self.getScreenshot(rank, self.img_url_hushen)
 			self.sysback()
 
+	def test017_GetMoreShoot(self):
+		"""测试获取更多的入口截图"""
+		self.clickHangQing()
+		self.clickMore()
+		dataone = [self.more_hushen, self.more_zhaiquan, self.more_jijin]
+		datatwo = [self.more_ganggu, self.more_quanqiu, self.more_qihuo]
+		for x in dataone:
+			for y in x:
+				self.driver.find_element_by_name(y).click()
+				self.getScreenshot(y, self.img_url_more)
+				self.sysback()
+		self.swipe_to_up()
+		for a in datatwo:
+			for b in a:
+				self.driver.find_element_by_name(b).click()
+				self.getScreenshot(b, self.img_url_more)
+				self.sysback()
+
+	def test018_BuyStock(self):
+		"""测试购买股票"""
+		self.clickHangQing()
+		while True:
+			ran = random.randint(0, self.getLength())
+			stock_num = self.getStockNum(ran)
+			self.clickStock(ran)
+			try:
+				self.clickBuy()
+				break
+			except Exception:
+				self.sysback()
+		self.assertEqual(self.get_title(), u'交易登录')
+		while True:
+			self.ZiJinZhangHaoLogin()
+			time.sleep(20)
+			if self.get_title() != u'交易登录':
+				break
+		self.clickThird(0)
+		self.clickBuyBtn()
+		# 进入委托买入页面点击买入,同样适用name方法寻找按钮
+		self.clickBuyBtn()
+		time.sleep(5)
+		self.assertIn(u'委托请求发送成功', self.getRstMsg())
 
 
 if __name__ == '__main__':

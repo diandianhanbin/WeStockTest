@@ -1,7 +1,6 @@
 # ecoding=utf-8
 # Author: Sven_Weng | 翁彦彬
 # Email: diandianhanbin@gmail.com
-from django.forms.widgets import Input
 
 import config
 import random
@@ -53,6 +52,8 @@ class HangQing(AppUI):
 	rik = config.HANGQING['rik']
 	zhouk = config.HANGQING['zhouk']
 	yuek = config.HANGQING['yuek']
+	buy = config.HANGQING['buy_detail']
+	sale = config.HANGQING['sale_detail']
 
 	# ----------------------沪深页面-------------------------
 	hushen = config.HANGQING['hushen']
@@ -75,6 +76,22 @@ class HangQing(AppUI):
 	remenahgu = config.HANGQING['remenahgu']
 	hongchougu = config.HANGQING['hongchougu']
 	lanchougu = config.HANGQING['lanchougu']
+
+	# ----------------------更多页面-------------------------
+	more_hushen = config.HANGQING['more_hushen']
+	more_zhaiquan = config.HANGQING['more_zhaiquan']
+	more_jijin = config.HANGQING['more_jijin']
+	more_ganggu = config.HANGQING['more_ganggu']
+	more_quanqiu = config.HANGQING['more_quanqiu']
+	more_qihuo = config.HANGQING['more_qihuo']
+	more = config.HANGQING['gengduo']
+
+	# ---------委托买入卖出页面-----------------
+	trust_edit = config.HANGQING['entrust_edit']
+	third_btn = config.HANGQING['third']
+	buy_btn = config.HANGQING['buy_btn']
+	rst_msg = config.HANGQING['rst_msg']
+	enter = config.HANGQING['enter']
 
 	# ----------------------执行方法---------------------------------------
 
@@ -361,6 +378,20 @@ class HangQing(AppUI):
 		"""
 		self.find_element(*self.yuek).click()
 
+	def clickBuy(self):
+		"""
+		点击买入按钮
+		:return: None
+		"""
+		self.find_element(*self.buy).click()
+
+	def clickSale(self):
+		"""
+		点击卖出按钮
+		:return: None
+		"""
+		self.find_element(*self.sale).click()
+
 	# ---------------沪深页面-------------------
 
 	def clickHuShen(self):
@@ -492,3 +523,43 @@ class HangQing(AppUI):
 		"""
 		self.find_element(*self.lanchougu).click()
 
+	# ---------------更多页面-------------------
+
+	def clickMore(self):
+		"""
+		点击更多
+		:return: None
+		"""
+		self.find_element(*self.more).click()
+
+	# ---------委托买入卖出页面-----------------
+
+	def clickThird(self, index):
+		"""
+		点击委托买入卖出页面的三分之一按钮
+		:param: 序号,0表示三分之一
+		:return: None
+		"""
+		self.find_elements(*self.third_btn)[index].click()
+
+	def clickBuyBtn(self):
+		"""
+		点击委托买入按钮
+		:return: None
+		"""
+		self.find_element(*self.buy_btn).click()
+
+	def getRstMsg(self):
+		"""
+		获取返回的信息
+		:return:str, 获取返回状态信息
+		"""
+		rst = self.find_element(*self.rst_msg).text
+		return rst
+
+	def clickEnter(self):
+		"""
+		点击确定按钮
+		:return: None
+		"""
+		self.find_element(*self.enter).click()

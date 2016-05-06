@@ -9,7 +9,9 @@ CONNECT = {
 	'deviceName': '5136b01e',
 	'appPackage': 'com.weizq',
 	'appActivity': 'com.zztzt.android.simple.app.MainActivity',
-	"baseUrl": "http://127.0.0.1:4723/wd/hub"
+	"baseUrl": "http://127.0.0.1:4723/wd/hub",
+	'loginActivity': '.activity.LoginActivity'
+
 }
 
 COMMON = {
@@ -21,6 +23,21 @@ COMMON = {
 	'view_title': (By.CLASS_NAME, 'android.widget.TextView'),
 	'ensure': (By.NAME, u'确定'),
 	'cancle': (By.NAME, u'取消'),
+	'zjzhusername': '20300000041',
+	'zjzhpassword': '111222',
+	'zjzhloginaccountedit': (By.ID, 'com.weizq:id/edit_account'),
+	'zjzhloginpasswordedit': (By.ID, 'com.weizq:id/edit_password'),
+	'yanzhengma': (By.ID, 'com.weizq:id/text_yanzhengma'),
+	'yanzhengmaedit': (By.ID, 'com.weizq:id/edit_yanzhengma'),
+	'loginbtn': (By.ID, 'com.weizq:id/login'),
+}
+
+MOBILELOGIN = {
+	'username_edit': (By.ID, 'com.weizq:id/login_name_et'),
+	'password_edit': (By.ID, 'com.weizq:id/login_psw_et'),
+	'login_btn': (By.ID, 'com.weizq:id/login_btn'),
+	'username': '18659980966',
+	'password': '111222'
 }
 
 CAIXUN = {
@@ -116,5 +133,17 @@ HANGQING = {
 	'lanchougu': (By.NAME, u'蓝筹股'),
 
 	# ---------更多页面-----------------
+	'more_hushen': ['上证A股', '上证B股', '深证A股', '深证B股', '中小板', '创业板', '风险警示', '退市整理板'],
+	'more_zhaiquan': ['上证债券', '深证债券'],
+	'more_jijin': ['沪深封闭基金'],
+	'more_ganggu': ['香港指数', '国企股', '红筹股', '蓝筹股', 'AH股', '香港主板', '香港创业板', '恒指成分'],
+	'more_quanqiu': ['全球指数'],
+	'more_qihuo': ['中金所', '郑州商品', '上海期货', '大连商品'],
 
+	# ---------委托买入卖出页面-----------------
+	'entrust_edit': (By.CLASS_NAME, 'android.widget.EditText'),
+	'third': (By.CLASS_NAME, 'android.widget.RadioButton'),
+	'buy_btn': (By.NAME, u'买入'),
+	'rst_msg': (By.CLASS_NAME, 'android.widget.TextView'),
+	'enter': (By.NAME, u'确定'),
 }
